@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6773056060764717403}
   - component: {fileID: -1848419564994277492}
   - component: {fileID: 8692263648583922461}
+  - component: {fileID: -1657506302088564698}
   m_Layer: 0
   m_Name: PBaseTurret
   m_TagString: Untagged
@@ -27,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9042684877298033404}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3111772, y: 0.3053778, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6773056060764717403
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: 694766c867692514ea84bb0471b70580, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.68, y: 1.18}
   m_AdaptiveModeThreshold: 0.5
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1c53c5f6bdf3e4f8a7a2e2a5875584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserType: {fileID: 0}
 --- !u!60 &8692263648583922461
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -142,20 +144,45 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.33816117, y: 0.026880689}
-      - {x: 0.34, y: 0.47999564}
-      - {x: 0.25760433, y: 0.5549697}
-      - {x: 0.15375277, y: 0.59}
-      - {x: -0.16038968, y: 0.5975005}
-      - {x: -0.26539814, y: 0.55273527}
-      - {x: -0.34, y: 0.48374626}
-      - {x: -0.34367767, y: 0.020003576}
-      - {x: -0.18457505, y: -0.11905285}
-      - {x: -0.08294697, y: -0.15374908}
-      - {x: -0.082632385, y: -0.5562494}
+    - - {x: 0.33816117, y: -0.47801355}
+      - {x: 0.33711687, y: -0.024700398}
+      - {x: 0.2508179, y: 0.06109199}
+      - {x: 0.19855487, y: 0.06525569}
+      - {x: 0.18166451, y: 0.088556446}
+      - {x: 0.13037194, y: 0.13045347}
+      - {x: 0.07792312, y: 0.13329986}
+      - {x: 0.08024683, y: 0.53451717}
+      - {x: 0.05196084, y: 0.5919522}
+      - {x: -0.061214983, y: 0.59157324}
+      - {x: -0.089535296, y: 0.5309068}
+      - {x: -0.08629969, y: 0.1346297}
+      - {x: -0.13987659, y: 0.13032527}
+      - {x: -0.18068685, y: 0.092241146}
+      - {x: -0.18976885, y: 0.06055393}
+      - {x: -0.25349113, y: 0.06362449}
+      - {x: -0.34095523, y: -0.016060296}
+      - {x: -0.34358016, y: -0.025228763}
+      - {x: -0.34259322, y: -0.482997}
+      - {x: -0.25808096, y: -0.55459344}
+      - {x: -0.21634664, y: -0.5587741}
+      - {x: -0.16430564, y: -0.5950874}
       - {x: -0.06, y: -0.59}
       - {x: 0.05264464, y: -0.5918753}
-      - {x: 0.07976051, y: -0.54812473}
-      - {x: 0.080793545, y: -0.14936152}
-      - {x: 0.19999999, y: -0.099999994}
+      - {x: 0.1559889, y: -0.5952852}
+      - {x: 0.21147074, y: -0.55716074}
+      - {x: 0.26261616, y: -0.5577338}
   m_UseDelaunayMesh: 0
+--- !u!114 &-1657506302088564698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9042684877298033404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab00b3a60b21da84a81ec407bd8327e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser: {fileID: 7660332573944813864, guid: e78c9d2525f5078468d38def1356e7c8, type: 3}
+  laserSpeed: 0

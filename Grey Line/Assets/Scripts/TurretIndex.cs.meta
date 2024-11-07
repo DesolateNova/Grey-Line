@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: afb923f140e3f2d4f91f47994de8005d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bTurret: {fileID: 9042684877298033404, guid: 3edfe0839c0234f41a45d7e32e0a5db9, type: 3}
+  - tierOneTurret: {fileID: 3165453900850478517, guid: 173b7acc48ab2394aa109cd92b695a44, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

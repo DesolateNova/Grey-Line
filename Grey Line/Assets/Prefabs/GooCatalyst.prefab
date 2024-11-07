@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2768820781806052609}
   m_Layer: 0
   m_Name: GooCatalyst
-  m_TagString: Untagged
+  m_TagString: Catalyst
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1cddec013f2755f4dbe65a3881042d20, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4e9bd17ca7caf4eb57991c89f7c009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nanoBots: {fileID: 567941506952685089, guid: 532ee4ec9b964744a9a7c40878fef2eb, type: 3}
+  Buildings:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!60 &2768820781806052609
 PolygonCollider2D:
   m_ObjectHideFlags: 0

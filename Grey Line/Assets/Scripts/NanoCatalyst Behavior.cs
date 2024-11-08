@@ -26,11 +26,11 @@ public class NanoCatalystBehavior : MonoBehaviour
             for (int j = -1; j < 2; j++)
             {
                 Collider2D checker = Physics2D.OverlapBox(position + new Vector2(i, j), spawnPlot / 2, 0);
-                if (checker == null || checker.tag == "Catalyst")
+                int roll = Random.Range(0, 101);
+                if ((checker == null || checker.tag == "Catalyst") && roll > 88)
                 {
                     Instantiate(spawn, position + new Vector2(i, j), Quaternion.identity);
                 }
-                Debug.Log(checker);
             }
         }
     }

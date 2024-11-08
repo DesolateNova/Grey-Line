@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class NanoBotsBehavior : MonoBehaviour
 {
     [SerializeField] private float spawnRate;
     private float timer;
+
+    void Awake()
+    {
+        timer = spawnRate;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        timer = spawnRate;
+        GameObject nanoBots = GameObject.Find("NanoBots");
+        GameObject deco = GameObject.Find("Deco");
+        nanoBots.GetComponent<SpriteResolver>().SetCategoryAndLabel("Variants", GameManager.variants[Random.Range(0, 5)]);
+        deco.GetComponent<SpriteResolver>().SetCategoryAndLabel("Variants", GameManager.variants[Random.Range(0, 3)]);
     }
 
     // Update is called once per frame

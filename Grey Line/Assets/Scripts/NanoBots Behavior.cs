@@ -15,7 +15,7 @@ public class NanoBotsBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject nanoBots = GameObject.Find("NanoBots");
+        GameObject nanoBots = GameObject.Find("Body");
         GameObject deco = GameObject.Find("Deco");
         nanoBots.GetComponent<SpriteResolver>().SetCategoryAndLabel("Variants", GameManager.variants[Random.Range(0, 5)]);
         deco.GetComponent<SpriteResolver>().SetCategoryAndLabel("Variants", GameManager.variants[Random.Range(0, 3)]);
@@ -29,6 +29,13 @@ public class NanoBotsBehavior : MonoBehaviour
         {
             NanoCatalystBehavior.Spawn(transform.position, this.gameObject);
             timer = spawnRate;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

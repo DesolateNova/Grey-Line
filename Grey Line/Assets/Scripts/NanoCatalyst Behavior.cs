@@ -10,6 +10,7 @@ public class NanoCatalystBehavior : MonoBehaviour
     void Start()
     {
         Spawn(transform.position, nanoBots);
+        Physics2D.IgnoreCollision(nanoBots.GetComponent<Collider2D>(), nanoBots.transform.GetChild(0).GetComponent<Collider2D>());
     }
 
     // Update is called once per frame

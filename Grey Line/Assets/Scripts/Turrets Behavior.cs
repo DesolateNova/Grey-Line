@@ -6,7 +6,6 @@ public class TurretsBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject laserType;
     [SerializeField] private float timer, swivelSpeed, range; 
-    private Laser laserScript;
     private GameObject laser;
     private Transform hardPoint, muzzle;
     private float cooldown;
@@ -14,10 +13,8 @@ public class TurretsBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        laserScript = GetComponent<Laser>();
         hardPoint = transform.Find("HardPoint");
         muzzle = transform.Find("HardPoint/Muzzle");
-        laser = laserScript.LaserType;
         cooldown = timer;
     }
 

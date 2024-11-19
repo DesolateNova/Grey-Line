@@ -6,22 +6,28 @@ public class TurretsBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject laserType;
     [SerializeField] private float timer, swivelSpeed, range; 
-    private GameObject laser;
     private Transform hardPoint, muzzle;
     private float cooldown;
+    private LayerMask validTargets;
+    private RaycastHit2D inSights;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.name = "Turret";
         hardPoint = transform.Find("HardPoint");
         muzzle = transform.Find("HardPoint/Muzzle");
         cooldown = timer;
+        validTargets = LayerMask.GetMask("Default", "Buildings");
     }
 
     // Update is called once per frame
     void Update()
     {
         GameObject[] presentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        inSights = Physics2D.Raycast(muzzle.position, hardPoint.up, validTargets);
+        string visibleTarget = inSights.collider.tag;
+        Debug.DrawRay(muzzle.position, hardPoint.up * range, Color.red);
         cooldown -= Time.deltaTime;
 
         if (presentEnemies.Length > 0)
@@ -45,7 +51,7 @@ public class TurretsBehavior : MonoBehaviour
                 {
                     hardPoint.rotation = Quaternion.RotateTowards(hardPoint.rotation, facing, swivelSpeed * Time.deltaTime);
                 }
-                else if (cooldown < 0 && (facing.eulerAngles.z == hardPoint.eulerAngles.z))
+                else if (cooldown < 0 && (facing.eulerAngles.z == hardPoint.eulerAngles.z) && (visibleTarget == "Enemy" || visibleTarget == "Player"))
                 {
                     Instantiate(laserType, transform.position, muzzle.transform.rotation);
                     cooldown = timer;

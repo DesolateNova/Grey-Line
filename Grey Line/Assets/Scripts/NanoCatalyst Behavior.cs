@@ -4,31 +4,38 @@ using UnityEngine;
 
 public class NanoCatalystBehavior : MonoBehaviour
 {
-    [SerializeField] GameObject nanoBots;
     public LayerMask Buildings;
     // Start is called before the first frame update
     void Start()
     {
-        Spawn(transform.position, nanoBots);
-        Physics2D.IgnoreCollision(nanoBots.GetComponent<Collider2D>(), nanoBots.transform.GetChild(0).GetComponent<Collider2D>());
+        this.name = "NanoCatalyst";
+        Spawn(transform.position, GameManager.nanoBots);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Spawn(transform.position, nanoBots);
+        Spawn(transform.position, GameManager.nanoBots);
     }
 
     public static void Spawn(Vector2 position, GameObject spawn)
     {
-        Vector3 spawnPlot = new Vector2(1, 1);
+        Collider2D checker;
+        string ancestor;
+
         for (int i = -1; i < 2; i++)
         {
             for (int j = -1; j < 2; j++)
             {
-                Collider2D checker = Physics2D.OverlapBox(position + new Vector2(i, j), spawnPlot / 2, 0);
+                checker = Physics2D.OverlapBox(position + new Vector2(i, j), GameManager.spawnPlot / 2, 0);
+                if (checker != null)
+                    ancestor = GameManager.baseAncestor(checker);
+                else
+                    ancestor = "none";
+
                 int roll = Random.Range(0, 101);
-                if ((checker == null || checker.tag == "Catalyst") && roll > 88)
+
+                if ((checker == null || checker.name == "NanoCatalyst" || ancestor == "Turret") && roll > 85)
                 {
                     Instantiate(spawn, position + new Vector2(i, j), Quaternion.identity);
                 }

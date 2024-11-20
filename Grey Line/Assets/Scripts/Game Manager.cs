@@ -87,9 +87,13 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            selectedItem = SelectItem(pointer);
-            if (selectedItem.name != "Empty")
+            GameObject itemAtClick = SelectItem(pointer);
+            itemAtClick = baseAncestor(itemAtClick);
+            if (itemAtClick.name != "Empty")
+            {
                 isSelected = true;
+                selectedItem = itemAtClick;
+            }
             else if (Input.GetMouseButtonDown(0)  && isSelected)
                 WayPoint.setWayPoint(selectedItem);
 
@@ -109,6 +113,16 @@ public class GameManager : MonoBehaviour
             ancestor = ancestor.parent;
 
         return ancestor.name;
+    }
+
+    public static GameObject baseAncestor(GameObject item)
+    {
+        Transform ancestor = item.transform;
+
+        while (ancestor.parent != null)
+            ancestor = ancestor.parent;
+
+        return ancestor.gameObject;
     }
 
     private static void NanoRandomizer()

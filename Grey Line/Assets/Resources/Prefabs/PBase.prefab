@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2847453783047656731}
   - component: {fileID: -3666291010201472867}
   - component: {fileID: 6981563778400067502}
+  - component: {fileID: -5544671663788044085}
   m_Layer: 0
   m_Name: PBase
   m_TagString: Player
@@ -198,6 +199,33 @@ PolygonCollider2D:
       - {x: 0.37715155, y: 0.4981277}
       - {x: 0.2650603, y: 0.5928975}
   m_UseDelaunayMesh: 0
+--- !u!50 &-5544671663788044085
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5481853215027329913}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6404843656706379613
 GameObject:
   m_ObjectHideFlags: 0

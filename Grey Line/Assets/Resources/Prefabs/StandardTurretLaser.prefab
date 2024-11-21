@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laser: {fileID: 7660332573944813864}
   laserSpeed: 25
+  penetrationPower: 1
 --- !u!70 &6421562529132288318
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

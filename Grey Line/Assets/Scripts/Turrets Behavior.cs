@@ -19,6 +19,7 @@ public class TurretsBehavior : MonoBehaviour
         muzzle = transform.Find("HardPoint/Muzzle");
         cooldown = timer;
         validTargets = LayerMask.GetMask("Default", "Buildings");
+        gameObject.transform.Find("RangeFinder").transform.localScale = new Vector3(1, 1, 0) * (range * 2);
     }
 
     // Update is called once per frame
@@ -58,6 +59,12 @@ public class TurretsBehavior : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetMouseButton(2))
+            GameManager.DisplayRange(gameObject, true);
+        else
+            GameManager.DisplayRange(gameObject, false);
+
     }
 
     private GameObject findClosestEnemy(GameObject[] enemies)
@@ -73,6 +80,5 @@ public class TurretsBehavior : MonoBehaviour
             }
         }
         return closestEnemy;
-        
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1251320417567332164}
   - component: {fileID: 522556052157079943}
   - component: {fileID: 2768820781806052609}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GooCatalyst
   m_TagString: Catalyst
   m_Icon: {fileID: 0}

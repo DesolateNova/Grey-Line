@@ -6,6 +6,7 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private GameObject laser;
     [SerializeField] private float laserSpeed;
+    [SerializeField] private int penetrationPower;
 
     public GameObject LaserType => laser;
     private float xTraversal, yTraversal, shootAngle;
@@ -38,6 +39,7 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.name = laser.name;
         transform.position += (new Vector3(xTraversal, yTraversal, 0) * laserSpeed) * Time.deltaTime;
 
 
@@ -54,8 +56,16 @@ public class Laser : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+
             Destroy(collision.gameObject);
+            penetrationPower--;
+
+            if (penetrationPower == 0)
+            {
             Destroy(gameObject);
+            Destroy(collision.gameObject);
+            }
+
         }
     }
 }

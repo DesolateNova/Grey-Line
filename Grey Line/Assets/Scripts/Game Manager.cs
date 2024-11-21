@@ -89,18 +89,25 @@ public class GameManager : MonoBehaviour
         {
             GameObject itemAtClick = SelectItem(pointer);
             itemAtClick = baseAncestor(itemAtClick);
+
             if (itemAtClick.name != "Empty")
             {
                 isSelected = true;
                 selectedItem = itemAtClick;
             }
             else if (Input.GetMouseButtonDown(0)  && isSelected)
+            {
                 WayPoint.setWayPoint(selectedItem);
+            }
+
 
         }
 
         if (Input.GetMouseButtonDown(1))
+        {
             isSelected = false;
+        }
+
     }
 
     //###################################################################################################################################
@@ -198,6 +205,31 @@ public class GameManager : MonoBehaviour
     {
         originalRGB = tilemap.color;
     }
-}
 
 //###################################################################################################################################
+
+    public static void ToggleColliders(GameObject obj)
+    {
+        if (obj.GetComponent<Collider2D>() != null && obj.GetComponent<Collider2D>().gameObject.name != "Burst")
+        {
+            obj.GetComponent<Collider2D>().enabled = !obj.GetComponent<Collider2D>().enabled;
+        }
+
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            ToggleColliders(obj.transform.GetChild(i).gameObject);
+        }
+    }
+    public static void DisplayRange(GameObject turret, bool toggle)
+    {
+        if (turret.transform.Find("RangeFinder")  != null)
+            turret.transform.Find("RangeFinder").GetComponent<SpriteRenderer>().enabled = toggle;
+    }
+
+    public static void EndRound()
+    {
+        Debug.Log("Congrats you won the round");
+        Debug.Break();
+    }
+
+}

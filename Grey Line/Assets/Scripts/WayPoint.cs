@@ -5,41 +5,58 @@ using UnityEngine;
 public class WayPoint : MonoBehaviour
 {
 
-    private static GameObject wayPoint, tetheredObject;
-    private static Dictionary<int, GameObject> tether = new Dictionary<int, GameObject>();
+    private static GameObject wayPointPrefab;
+    private static Dictionary<int, GameObject> existingTethers = new Dictionary<int, GameObject>();
+
+    private GameObject tetheredWayPoint, tetheredObject;
     private Vector3 wayPointPos, tetheredObjectPos;
-    private static bool isMoving;
-    private static int wayPointID;
+    private bool isMoving;
+    private int tetheredObjectID;
 
-
+    private void Init(int ID, GameObject wayPoint, GameObject item)
+    {
+        this.name = "WayPoint";
+        existingTethers.Add(ID, wayPoint);
+        this.tetheredWayPoint = wayPoint;
+        this.tetheredObject = item;
+        this.tetheredObjectID = ID;
+        GameManager.ToggleColliders(tetheredObject);
+        isMoving = true;
+    }
 
     // Start is called before the first frame update
     void Awake()
     {
-        this.name = "WayPoint";
-        wayPointPos = this.transform.position;
-        tetheredObjectPos = tetheredObject.transform.position;
-        wayPointID = wayPoint.GetInstanceID();
-        tether.Add(wayPointID, tetheredObject);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(tether.Keys.ToString());
+        if (tetheredObject == null)
+        {
+            existingTethers.Remove(tetheredObjectID);
+            Destroy(tetheredWayPoint);
+        }
+
+
+        tetheredObjectPos = tetheredObject.transform.position;
+        wayPointPos = tetheredWayPoint.transform.position;
         Vector3 targetPos = wayPointPos - tetheredObjectPos;
+
+
         if (isMoving)
         {
             tetheredObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPos);
             tetheredObject.transform.position += targetPos.normalized * Time.deltaTime;
         }
-
         if (Vector3.Distance(tetheredObjectPos, wayPointPos) < 0.1f)
         {
 
             isMoving = false;
-            Destroy(gameObject);
-            tether.Remove(wayPointID);
+            GameManager.ToggleColliders(tetheredObject);
+            Destroy(tetheredWayPoint);
+            existingTethers.Remove(tetheredObjectID);
         }
 
         tetheredObjectPos = tetheredObject.transform.position;
@@ -47,15 +64,20 @@ public class WayPoint : MonoBehaviour
 
     public static void setWayPoint(GameObject obj)
     {
-        tetheredObject = obj;
-        if (wayPoint == null)
-            wayPoint = Resources.Load<GameObject>("Prefabs/WayPoint");
+        if (obj.tag != "Player") return;
 
-        //If waypoint already exists move the way point to pointer position
-        if (tether.ContainsKey(wayPointID))
-            wayPoint.transform.position = GameManager.GetPointerLocation();
+        int ID = obj.GetInstanceID();
+        GameObject wp;
+
+        if (wayPointPrefab == null)
+            wayPointPrefab = Resources.Load<GameObject>("Prefabs/WayPoint");
+
+        if (existingTethers.TryGetValue(ID, out var existingWayPoint))
+            existingWayPoint.transform.position = GameManager.GetPointerLocation();
         else
-            Instantiate(wayPoint, GameManager.GetPointerLocation(), Quaternion.identity);
-        isMoving = true;
+        {
+            wp = Instantiate(wayPointPrefab, GameManager.GetPointerLocation(), Quaternion.identity);
+            wp.GetComponent<WayPoint>().Init(ID, wp, obj);
+        }
     }
 }

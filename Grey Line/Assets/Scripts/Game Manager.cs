@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         NanoRandomizer();
+        if (!PlayerBaseTracker())
+            LossState();
 
         mousePos = Input.mousePosition;
         mousePos.z = 0 - Camera.main.transform.position.z;
@@ -226,9 +228,20 @@ public class GameManager : MonoBehaviour
             turret.transform.Find("RangeFinder").GetComponent<SpriteRenderer>().enabled = toggle;
     }
 
+    private static bool PlayerBaseTracker()
+    {
+        return GameObject.Find("PBase");
+    }
+
     public static void EndRound()
     {
-        Debug.Log("Congrats you won the round");
+        Debug.Log("Congrats You Won!");
+        Debug.Break();
+    }
+
+    public static void LossState()
+    {
+        Debug.Log("Darn You Lose!");
         Debug.Break();
     }
 

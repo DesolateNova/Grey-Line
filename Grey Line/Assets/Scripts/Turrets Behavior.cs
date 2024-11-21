@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurretsBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject laserType;
-    [SerializeField] private float timer, swivelSpeed, range; 
+    [SerializeField] private float timer, swivelSpeed, range;
     private Transform hardPoint, muzzle;
     private float cooldown;
     private LayerMask validTargets;

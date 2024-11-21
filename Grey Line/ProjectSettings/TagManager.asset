@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Catalyst
   - Enemy
+  - Burst
   layers:
   - Default
   - TransparentFX

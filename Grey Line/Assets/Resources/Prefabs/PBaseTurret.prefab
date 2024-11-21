@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laser: {fileID: 7660332573944813864, guid: e78c9d2525f5078468d38def1356e7c8, type: 3}
   laserSpeed: 0
+  penetrationPower: 0
 --- !u!1 &939210836551128130
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserType: {fileID: 4470319026024814583, guid: d698412a8be6555468b12dd17c8a31d6, type: 3}
-  timer: 0.75
+  timer: 1
   swivelSpeed: 360
-  range: 5
+  range: 7

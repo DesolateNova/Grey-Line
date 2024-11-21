@@ -54,7 +54,7 @@ public class EnergyPylonBehavior : MonoBehaviour
                     ColorModifier("Beam1", 0);
                     ColorModifier("Beam2", 0);
                     ColorModifier("Burst", 0);
-                    GameObject.Find("Burst").GetComponent<Collider2D>().enabled = false;
+                    ColliderSetter("Burst", false);
                 }
                 timer = CHARGE_UP_TIME;
             }
@@ -95,7 +95,7 @@ public class EnergyPylonBehavior : MonoBehaviour
             ColorModifier("Beam2", 1);
             ColorModifier("Burst", 1);
             ColorModifier("Charge", 0);
-            GameObject.Find("Burst").GetComponent<Collider2D>().enabled = true;
+            ColliderSetter("Burst", true);
             beamTimer = 0.5f;
             timer -= Time.deltaTime;
         }
@@ -137,11 +137,26 @@ public class EnergyPylonBehavior : MonoBehaviour
         GameObject.Find(str).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, value);
     }
 
+    private bool BurstIsActive()
+    {
+        return GameObject.Find("Burst").GetComponent<Collider2D>().enabled;
+    }
+
+    private void ColliderSetter(string str, bool toggle)
+    {
+        GameObject.Find(str).GetComponent<Collider2D>().enabled = toggle;
+ 
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy" || other.tag == "Catalyst")
+        Debug.Log(BurstIsActive());
+        if ((other.tag == "Enemy" || other.tag == "Catalyst"))
         {
-            Destroy(other.gameObject);
+            if (BurstIsActive())
+                Destroy(other.gameObject);
+            else
+                Destroy(gameObject);
         }
     }
 

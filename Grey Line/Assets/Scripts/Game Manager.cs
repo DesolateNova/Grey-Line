@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.U2D.Animation;
 
 public class GameManager : MonoBehaviour
 {
-    
+
+    [SerializeField] TextMeshProUGUI text;
+
     private static SpriteResolver nanoBody, nanoDeco;
     private static GameManager instance;
+
+    private static Scene[] scenes;
 
     public static GameObject nanoBots, selectedItem, fallbackObject;
     readonly public static string[] variants = {"var1", "var2", "var3", "var4", "var5"};
@@ -235,14 +241,17 @@ public class GameManager : MonoBehaviour
 
     public static void EndRound()
     {
-        Debug.Log("Congrats You Won!");
-        Debug.Break();
+        if (SceneManager.GetActiveScene().name == "Mission_Three")
+            SceneManager.LoadScene("Mission_One");
+        if (SceneManager.GetActiveScene().name == "Mission_One")
+            SceneManager.LoadScene("Mission_Two");
+        else if (SceneManager.GetActiveScene().name == "Mission_Two")
+            SceneManager.LoadScene("Mission_Three");
     }
 
     public static void LossState()
     {
-        Debug.Log("Darn You Lose!");
-        Debug.Break();
+        SceneManager.LoadScene("Mision_One");
     }
 
 }
